@@ -19,5 +19,26 @@ sqlite.exec(`CREATE TABLE IF NOT EXISTS projects (
   created_at INTEGER NOT NULL,
   updated_at INTEGER NOT NULL
 )`);
+sqlite.exec(`CREATE TABLE IF NOT EXISTS documents (
+  id TEXT PRIMARY KEY NOT NULL,
+  project_id TEXT NOT NULL,
+  type TEXT NOT NULL,
+  title TEXT NOT NULL,
+  content_md TEXT NOT NULL DEFAULT '',
+  status TEXT NOT NULL DEFAULT 'draft',
+  current_version INTEGER NOT NULL DEFAULT 1,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (project_id) REFERENCES projects(id)
+)`);
+sqlite.exec(`CREATE TABLE IF NOT EXISTS document_versions (
+  id TEXT PRIMARY KEY NOT NULL,
+  document_id TEXT NOT NULL,
+  version INTEGER NOT NULL,
+  content_md TEXT NOT NULL,
+  change_note TEXT NOT NULL DEFAULT 'Initial draft',
+  created_at INTEGER NOT NULL,
+  FOREIGN KEY (document_id) REFERENCES documents(id)
+)`);
 
 export const db = drizzle(sqlite, { schema });
