@@ -39,9 +39,22 @@ Menghasilkan tujuh file Markdown dari jawaban discovery. Generator harus mempert
 
 - Copy isi prompt.
 - Download seluruh dokumen sebagai ZIP.
+
+### 6. Optional build paths
+
+- Memilih template codebase berdasarkan kebutuhan proyek.
+- Memilih alur desain AI atau membuka workspace Penpot.
+- Menghasilkan prompt untuk agent AI dari konteks proyek yang sama.
+
+### 7. AI provider
+
+- Request AI diproses melalui backend StartVibes.
+- API key platform menggunakan 9routers.
+- Secret tidak pernah dikirim ke client atau ditulis ke dokumen proyek.
+- Model dan kuota harus dapat dibatasi per paket pengguna.
 - Menampilkan instruksi penggunaan pada agent AI.
 
-### 6. Bahasa
+### 8. Bahasa
 
 - Indonesia.
 - Inggris.

@@ -32,18 +32,24 @@ Lima bahasa tersedia. IP hanya memberi saran default dan tidak mengunci pilihan 
 
 ## D-006 - Scope MVP
 
-**Status:** Assumption pending founder approval
+**Status:** Confirmed
 
-MVP berfokus pada discovery, generator Markdown, editing, copy prompt, dan ekspor ZIP. Pembuatan codebase otomatis dan integrasi Penpot penuh ditunda.
+MVP berfokus pada discovery, generator Markdown, editing, copy prompt, dan ekspor ZIP. Pembuatan codebase/template menjadi opsi pengguna, bukan langkah wajib. Integrasi Penpot tersedia sebagai opsi desain.
 
 ## D-007 - Provider AI
 
-**Status:** Open
+**Status:** Confirmed, detail teknis open
 
-Belum diputuskan apakah StartVibes memakai provider bawaan, BYOK, atau kombinasi keduanya.
+StartVibes memakai API key milik platform melalui 9routers. API key tidak dikirim ke browser dan tidak disimpan sebagai data pengguna. Detail endpoint, model, rate limit, dan fallback provider masih perlu dikonfirmasi sebelum integrasi produksi.
 
 ## D-008 - Monetisasi
 
-**Status:** Open
+**Status:** Confirmed direction
 
-Belum diputuskan apakah modelnya free tier, subscription, pay-per-project, atau kombinasi.
+Monetisasi mengikuti pola NgodingPakeAI: free/starter entry point dengan batas pemakaian dan paket berbayar untuk akses, model, atau kuota yang lebih tinggi. Detail harga belum ditetapkan.
+
+## D-009 - Product flow reference
+
+**Status:** Confirmed
+
+Information architecture dan titik masuk utama diselaraskan dengan NgodingPakeAI: Bikin Plan, DesainPakeAI, AndalAI, dan Template. Implementasi StartVibes tetap menggunakan brand, copy, dan struktur internal sendiri.

@@ -18,6 +18,7 @@ MVP harus menjadi aplikasi web yang memandu discovery, menyimpan jawaban proyek,
 
 - Tidak menjalankan kode hasil generasi.
 - Tidak menyimpan API key provider milik pengguna.
+- API key provider platform dikelola hanya di server melalui secret environment.
 - Tidak membuat repository GitHub otomatis.
 - Tidak mengklaim output sebagai jaminan keamanan atau production-readiness.
 
@@ -83,6 +84,24 @@ Output generator adalah map deterministik dari `DocumentKind` ke Markdown. Setia
 - referensi ke keputusan terkait;
 - acceptance criteria jika relevan;
 - larangan mengarang pengguna, statistik, testimonial, atau integrasi.
+
+## AI provider adapter
+
+Gunakan interface server-side berikut agar provider tidak mengikat UI:
+
+```ts
+type AiRequest = {
+  projectContext: ProjectContext;
+  documentKind: DocumentKind;
+  locale: string;
+};
+
+type AiProvider = {
+  generate(request: AiRequest): Promise<{ content: string; model: string }>;
+};
+```
+
+Implementasi 9routers harus membaca secret dari environment, memberi timeout, menangani error provider, dan tidak mengekspos key ke client. Nama endpoint/model final tetap open sampai konfigurasi provider dikonfirmasi.
 
 ## State wajib
 
