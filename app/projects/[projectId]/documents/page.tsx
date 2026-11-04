@@ -1,0 +1,20 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import "../../../documents.css";
+
+const documents = [
+  { type: "PRD", title: "Product Requirements Document", status: "Draft", updated: "Belum direview", tone: "coral", preview: "StartVibes membantu pengguna mengubah ide aplikasi menjadi dokumen proyek yang siap dieksekusi." },
+  { type: "AGENTS", title: "Agent Instructions", status: "Draft", updated: "Belum dibuat", tone: "violet", preview: "Aturan kerja, konteks, dan batasan yang perlu diketahui coding agent." },
+  { type: "PLAN", title: "Build Plan", status: "Draft", updated: "Menunggu PRD", tone: "mint", preview: "Tahapan implementasi yang dipecah menjadi langkah kecil dan dapat diverifikasi." },
+  { type: "TASK", title: "Task List", status: "Draft", updated: "Menunggu PLAN", tone: "blue", preview: "Daftar pekerjaan berurutan dengan acceptance criteria dan prompt handoff." },
+  { type: "DESIGN", title: "Design Direction", status: "Draft", updated: "Belum dibuat", tone: "sand", preview: "Arah visual, UX, komponen, responsive behavior, dan accessibility." },
+  { type: "SPEC", title: "Feature Specification", status: "Draft", updated: "Belum dibuat", tone: "rose", preview: "Perilaku fitur, data, states, dan kontrak integrasi yang perlu dibangun." },
+];
+
+export default function DocumentsPage() {
+  const [selected, setSelected] = useState(documents[0]);
+  const [notice, setNotice] = useState("");
+  return <main className="workspace-shell"><aside className="workspace-side"><Link className="brand" href="/projects"><span className="brand-dot" />start<span>vibes</span></Link><p className="side-label">PROJECT</p><nav className="side-nav"><Link href="/projects"><span>←</span> Semua proyek</Link><Link className="side-active" href="/projects/demo/documents"><span>▤</span> Dokumen</Link><button onClick={() => setNotice("Rencana akan tersedia setelah PRD disetujui.")}><span>≡</span> Rencana & task</button></nav><div className="side-bottom"><p className="side-label">PROJECT PREVIEW</p><p className="project-name">Ruang ide jadi PRD<small>Preview workspace</small></p><button onClick={() => setNotice("Pengaturan proyek belum aktif pada mock.")}><span>⚙</span> Pengaturan</button></div></aside><section className="workspace-main documents-main"><header className="workspace-header"><div><p className="eyebrow">PROJECT / RUANG IDE JADI PRD</p><h1>Pustaka dokumen.</h1></div><div className="header-actions"><button className="icon-button" onClick={() => setNotice("Semua dokumen sudah terlihat.")} aria-label="Cari dokumen">⌕</button><button className="primary" onClick={() => setNotice("Generator akan aktif setelah discovery selesai.")}>Generate dokumen <span>↗</span></button></div></header>{notice && <div className="notice" role="status">{notice}</div>}<div className="documents-layout"><section><div className="library-meta"><span>6 dokumen</span><span className="muted-count">Semua perubahan tersimpan otomatis</span></div><div className="document-list">{documents.map((doc) => <button className={`document-row ${selected.type === doc.type ? "selected" : ""}`} key={doc.type} onClick={() => setSelected(doc)}><span className={`doc-badge ${doc.tone}`}>{doc.type}</span><span className="doc-row-copy"><strong>{doc.title}</strong><small>{doc.updated}</small></span><span className="doc-row-status">{doc.status}</span><span className="doc-row-arrow">↗</span></button>)}</div></section><aside className="document-preview"><div className="preview-top"><span>PREVIEW</span><span>{selected.type}.md</span></div><div className="preview-body"><p className="eyebrow">{selected.type} / DRAFT</p><h2>{selected.title}</h2><div className="preview-rule" /><p>{selected.preview}</p><p className="placeholder-copy">Dokumen ini akan terisi setelah kamu menyelesaikan discovery dan meninjau keputusan proyek.</p><button className="text-link" onClick={() => setNotice(`${selected.type}.md belum memiliki isi final untuk disalin.`)}>Copy prompt <span>↗</span></button></div></aside></div></section></main>;
+}
