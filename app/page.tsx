@@ -6,7 +6,8 @@ import Link from "next/link";
 const tracks = [
   { key: "plan", label: "Bikin Plan", detail: "Dari ide jadi PRD, spec, dan task yang bisa langsung dipakai agent.", tone: "coral", mark: "01" },
   { key: "design", label: "DesainPakeAI", detail: "Rancang alur dan UI produk tanpa tersesat di layar kosong.", tone: "violet", mark: "02" },
-  { key: "template", label: "Template", detail: "Mulai dari struktur codebase yang hemat token dan mudah dirawat.", tone: "mint", mark: "03" },
+  { key: "chat", label: "AndalAI", detail: "Diskusikan ide dan rapikan PRD dengan model AI pilihanmu.", tone: "blue", mark: "03" },
+  { key: "template", label: "Template", detail: "Mulai dari struktur codebase yang hemat token dan mudah dirawat.", tone: "mint", mark: "04" },
 ];
 
 export default function Home() {
