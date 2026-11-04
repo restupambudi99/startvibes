@@ -23,7 +23,7 @@ export default function Home() {
       <nav className="nav">
         <Link className="brand" href="/" aria-label="StartVibes home"><span className="brand-dot" />start<span>vibes</span></Link>
         <div className="nav-links"><a href="#cara-kerja">Cara kerja</a><a href="#output">Output</a><a href="#templates">Templates</a></div>
-        <div className="nav-actions"><label className="language"><span className="sr-only">Bahasa</span><select value={language} onChange={(event) => setLanguage(event.target.value)}><option>ID</option><option>EN</option><option>中文</option><option>عربي</option><option>MS</option></select></label><button className="login" onClick={() => setToast("Login akan tersedia setelah workspace auth siap.")}>Masuk</button><button className="nav-cta" onClick={start}>Mulai proyek <span>↗</span></button></div>
+        <div className="nav-actions"><label className="language"><span className="sr-only">Bahasa</span><select value={language} onChange={(event) => setLanguage(event.target.value)}><option>ID</option><option>EN</option><option>中文</option><option>عربي</option><option>MS</option></select></label><button className="login" onClick={() => setToast("Login akan tersedia setelah workspace auth siap.")}>Masuk</button><Link className="nav-cta" href="/projects">Mulai proyek <span>↗</span></Link></div>
       </nav>
 
       <section className="hero">
