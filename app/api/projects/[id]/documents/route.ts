@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { asc, eq } from "drizzle-orm";
 import { db } from "../../../../../db";
-import { documents, projects } from "../../../../../db/schema";
+import { documentVersions, documents, projects } from "../../../../../db/schema";
 
 export const runtime = "nodejs";
 
@@ -27,6 +27,9 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   if (!title) return NextResponse.json({ error: "Judul dokumen wajib diisi." }, { status: 400 });
   const now = Date.now();
   const document = { id: crypto.randomUUID(), projectId: id, type, title, contentMd, status: "draft", currentVersion: 1, createdAt: now, updatedAt: now };
-  await db.insert(documents).values(document);
+  db.transaction((tx) => {
+    tx.insert(documents).values(document).run();
+    tx.insert(documentVersions).values({ id: crypto.randomUUID(), documentId: document.id, version: 1, contentMd, changeNote: "Initial draft", createdAt: now }).run();
+  });
   return NextResponse.json({ document }, { status: 201 });
 }
